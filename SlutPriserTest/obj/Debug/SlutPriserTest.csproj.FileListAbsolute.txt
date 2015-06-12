@@ -1,0 +1,9 @@
+C:\Users\Simon\documents\visual studio 2010\Projects\SlutPriser\SlutPriserTest\obj\Debug\SlutPriserTest.csprojResolveAssemblyReference.cache
+C:\Users\Simon\documents\visual studio 2010\Projects\SlutPriser\SlutPriserTest\bin\Debug\SlutPriserTest.dll
+C:\Users\Simon\documents\visual studio 2010\Projects\SlutPriser\SlutPriserTest\bin\Debug\SlutPriserTest.pdb
+C:\Users\Simon\documents\visual studio 2010\Projects\SlutPriser\SlutPriserTest\bin\Debug\SlutPriser.exe
+C:\Users\Simon\documents\visual studio 2010\Projects\SlutPriser\SlutPriserTest\bin\Debug\CsQuery.dll
+C:\Users\Simon\documents\visual studio 2010\Projects\SlutPriser\SlutPriserTest\bin\Debug\SlutPriser.pdb
+C:\Users\Simon\documents\visual studio 2010\Projects\SlutPriser\SlutPriserTest\bin\Debug\CsQuery.xml
+C:\Users\Simon\documents\visual studio 2010\Projects\SlutPriser\SlutPriserTest\obj\Debug\SlutPriserTest.dll
+C:\Users\Simon\documents\visual studio 2010\Projects\SlutPriser\SlutPriserTest\obj\Debug\SlutPriserTest.pdb

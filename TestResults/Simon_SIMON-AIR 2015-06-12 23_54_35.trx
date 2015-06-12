@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="4ed4ad24-5c02-4dd7-a3ed-93f8fdd15614" name="Simon@SIMON-AIR 2015-06-12 23:54:35" runUser="Simon-Air\Simon" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="570a3b39-6f51-4ed4-82b1-e463b08616bd">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Simon_SIMON-AIR 2015-06-12 23_54_35">
+      <DeploymentItem filename="C:\Users\Simon\Documents\Visual Studio 2010\Projects\SlutPriser\SlutPriser\bin\Debug\SlutPriser.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2015-06-12T23:54:35.0575438+02:00" queuing="2015-06-12T23:54:36.3043519+02:00" start="2015-06-12T23:54:36.4657534+02:00" finish="2015-06-12T23:54:55.6110391+02:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="SIMON-AIR" outcome="Error" timestamp="2015-06-12T23:54:55.5944390+02:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestMethod1" storage="c:\users\simon\documents\visual studio 2010\projects\slutpriser\slutprisertest\bin\debug\slutprisertest.dll" id="f87351ee-880a-f384-2e0d-b543204d0d2a">
+      <Execution id="cca860f1-6912-4d9d-a1a3-4161548f28b3" />
+      <TestMethod codeBase="C:/Users/Simon/documents/visual studio 2010/Projects/SlutPriser/SlutPriserTest/bin/Debug/SlutPriserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SlutPriserTest.UnitTest1, SlutPriserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethod1" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="f87351ee-880a-f384-2e0d-b543204d0d2a" executionId="cca860f1-6912-4d9d-a1a3-4161548f28b3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="cca860f1-6912-4d9d-a1a3-4161548f28b3" testId="f87351ee-880a-f384-2e0d-b543204d0d2a" testName="TestMethod1" computerName="SIMON-AIR" duration="00:00:19.0330854" startTime="2015-06-12T23:54:36.5769537+02:00" endTime="2015-06-12T23:54:55.6100391+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cca860f1-6912-4d9d-a1a3-4161548f28b3">
+    </UnitTestResult>
+  </Results>
+</TestRun>
