@@ -1,26 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SlutPriserModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="SlutPriserModelStoreContainer">
-    <EntitySet Name="Areas" EntityType="SlutPriserModel.Store.Areas" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Images" EntityType="SlutPriserModel.Store.Images" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Properties" EntityType="SlutPriserModel.Store.Properties" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SoldProperties" EntityType="SlutPriserModel.Store.SoldProperties" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Images_Properties" Association="SlutPriserModel.Store.FK_Images_Properties">
       <End Role="Properties" EntitySet="Properties" />
       <End Role="Images" EntitySet="Images" />
     </AssociationSet>
-    <AssociationSet Name="FK_Properties_Areas" Association="SlutPriserModel.Store.FK_Properties_Areas">
-      <End Role="Areas" EntitySet="Areas" />
-      <End Role="Properties" EntitySet="Properties" />
-    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Areas">
-    <Key>
-      <PropertyRef Name="AreaId" />
-    </Key>
-    <Property Name="AreaId" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="Area" Type="nvarchar" MaxLength="50" />
-    <Property Name="City" Type="nvarchar" MaxLength="50" />
-  </EntityType>
   <EntityType Name="Images">
     <Key>
       <PropertyRef Name="Id" />
@@ -36,7 +24,9 @@
     <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Area" Type="float" />
-    <Property Name="AreaId" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Area1" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Area2" Type="nvarchar" MaxLength="100" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" />
     <Property Name="Rooms" Type="int" Nullable="false" />
     <Property Name="Rent" Type="int" Nullable="false" />
     <Property Name="ListingPrice" Type="int" Nullable="false" />
@@ -46,6 +36,27 @@
     <Property Name="ListingDate" Type="date" />
     <Property Name="SellingDate" Type="date" />
     <Property Name="ListingPricePerArea" Type="int" />
+    <Property Name="Broker" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SoldProperties">
+    <Key>
+      <PropertyRef Name="Key" />
+    </Key>
+    <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Area" Type="float" Nullable="false" />
+    <Property Name="Area1" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Area2" Type="nvarchar" MaxLength="100" />
+    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Rooms" Type="int" Nullable="false" />
+    <Property Name="Rent" Type="int" Nullable="false" />
+    <Property Name="OperatingCost" Type="int" Nullable="false" />
+    <Property Name="BuildYear" Type="int" Nullable="false" />
+    <Property Name="FinalPrice" Type="int" Nullable="false" />
+    <Property Name="SellingDate" Type="date" />
+    <Property Name="ListingPricePerArea" Type="int" />
+    <Property Name="Broker" Type="nvarchar" MaxLength="50" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Images_Properties">
@@ -57,18 +68,6 @@
       </Principal>
       <Dependent Role="Images">
         <PropertyRef Name="Property" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Properties_Areas">
-    <End Role="Areas" Type="SlutPriserModel.Store.Areas" Multiplicity="1" />
-    <End Role="Properties" Type="SlutPriserModel.Store.Properties" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Areas">
-        <PropertyRef Name="AreaId" />
-      </Principal>
-      <Dependent Role="Properties">
-        <PropertyRef Name="AreaId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

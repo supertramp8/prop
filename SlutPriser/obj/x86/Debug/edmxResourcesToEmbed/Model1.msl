@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="SlutPriserModelStoreContainer" CdmEntityContainer="SlutPriserEntities">
-    <EntitySetMapping Name="Areas">
-      <EntityTypeMapping TypeName="SlutPriserModel.Areas">
-        <MappingFragment StoreEntitySet="Areas">
-          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
-          <ScalarProperty Name="Area" ColumnName="Area" />
-          <ScalarProperty Name="City" ColumnName="City" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Images">
       <EntityTypeMapping TypeName="SlutPriserModel.Images">
         <MappingFragment StoreEntitySet="Images">
@@ -25,7 +16,9 @@
           <ScalarProperty Name="Key" ColumnName="Key" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Area" ColumnName="Area" />
-          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+          <ScalarProperty Name="Area1" ColumnName="Area1" />
+          <ScalarProperty Name="Area2" ColumnName="Area2" />
+          <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="Rooms" ColumnName="Rooms" />
           <ScalarProperty Name="Rent" ColumnName="Rent" />
           <ScalarProperty Name="ListingPrice" ColumnName="ListingPrice" />
@@ -35,6 +28,28 @@
           <ScalarProperty Name="ListingDate" ColumnName="ListingDate" />
           <ScalarProperty Name="SellingDate" ColumnName="SellingDate" />
           <ScalarProperty Name="ListingPricePerArea" ColumnName="ListingPricePerArea" />
+          <ScalarProperty Name="Broker" ColumnName="Broker" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoldProperties">
+      <EntityTypeMapping TypeName="SlutPriserModel.SoldProperties">
+        <MappingFragment StoreEntitySet="SoldProperties">
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Area1" ColumnName="Area1" />
+          <ScalarProperty Name="Area2" ColumnName="Area2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Rooms" ColumnName="Rooms" />
+          <ScalarProperty Name="Rent" ColumnName="Rent" />
+          <ScalarProperty Name="OperatingCost" ColumnName="OperatingCost" />
+          <ScalarProperty Name="BuildYear" ColumnName="BuildYear" />
+          <ScalarProperty Name="FinalPrice" ColumnName="FinalPrice" />
+          <ScalarProperty Name="SellingDate" ColumnName="SellingDate" />
+          <ScalarProperty Name="ListingPricePerArea" ColumnName="ListingPricePerArea" />
+          <ScalarProperty Name="Broker" ColumnName="Broker" />
           <ScalarProperty Name="Address" ColumnName="Address" />
         </MappingFragment>
       </EntityTypeMapping>

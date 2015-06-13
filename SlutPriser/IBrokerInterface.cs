@@ -11,26 +11,26 @@ namespace SlutPriser
 {
     public class Broker
     {
-        protected string selector { get; set;}
-        protected string moreImagesLink {get; set;}
-        protected string brokerName { get; set; }
+        protected string Selector { get; set;}
+        protected string MoreImagesLink {get; set;}
+        public string BrokerName { get; set; }
 
         public Broker(string moreImagesLink, string brokerName)
         {
-            this.moreImagesLink = moreImagesLink;
-            this.brokerName = brokerName;
+            this.MoreImagesLink = moreImagesLink;
+            this.BrokerName = brokerName;
         }
 
         public Broker(string moreImagesLink, string selector, string brokerName) : this(moreImagesLink, brokerName)
         {
-            this.selector = selector;
+            this.Selector = selector;
             
         }
 
         public virtual List<string> GetImageLinks()
         {
             string domString;
-            WebRequest moreImagesRequest = WebRequest.Create(moreImagesLink);
+            WebRequest moreImagesRequest = WebRequest.Create(MoreImagesLink);
             ((HttpWebRequest)moreImagesRequest).UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)";
             var moreImagesResponse = moreImagesRequest.GetResponse();
             using (var stream3 = moreImagesResponse.GetResponseStream())
@@ -40,20 +40,20 @@ namespace SlutPriser
             }
 
             CQ moreImagesDom = domString;
-            CQ imageLinks = moreImagesDom[selector];
+            CQ imageLinks = moreImagesDom[Selector];
 
-            return imageLinks.Select(x => GetImageLinkForBroker(x, moreImagesLink)).ToList();
+            return imageLinks.Select(x => GetImageLinkForBroker(x, MoreImagesLink)).ToList();
         }
 
-        public virtual EntityCollection<Images> DownloadImages()
+        public virtual EntityCollection<Images> DownloadImages(string address)
         {
             var imageLinks = GetImageLinks();
 
-            string localFilename = @"c:\temp\" + brokerName + "\\";
+            string localFilename = @"c:\temp\" + BrokerName + "\\" + address + "\\";
             int i = 1;
 
             var images = new EntityCollection<Images>();
-            string subPath = Guid.NewGuid().ToString() + "\\";
+            string subPath = Guid.NewGuid().ToString() + "\\" ;
             bool exists = System.IO.Directory.Exists(localFilename + subPath);
 
             if (!exists)
@@ -83,11 +83,20 @@ namespace SlutPriser
             {
                 selector = "data-original";
             }
+            else if (brokerUrl.Contains("svenskfast"))
+            {
+                selector = "data-url-medium";
+            }
+            else if (brokerUrl.Contains("bulowlind"))
+            {
+                selector = "data-src";
+            }
+
 
             var imageLink = dom.GetAttribute(selector);
             imageUrl = !string.IsNullOrEmpty(imageLink) ? imageLink : imageUrl + dom.GetAttribute("src");
 
-            if (!imageUrl.Contains("http://"))
+            if (!imageUrl.Contains("http://") && !imageUrl.Contains("https://"))
             {
                 imageUrl = brokerUrl.Substring(0, brokerUrl.LastIndexOf('/')) + imageUrl;
             }

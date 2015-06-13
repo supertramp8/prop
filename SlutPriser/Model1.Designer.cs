@@ -19,7 +19,6 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("SlutPriserModel", "FK_Properties_Areas", "Areas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SlutPriser.Areas), "Properties", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SlutPriser.Properties), true)]
 [assembly: EdmRelationshipAttribute("SlutPriserModel", "FK_Images_Properties", "Properties", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SlutPriser.Properties), "Images", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SlutPriser.Images), true)]
 
 #endregion
@@ -75,22 +74,6 @@ namespace SlutPriser
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Areas> Areas
-        {
-            get
-            {
-                if ((_Areas == null))
-                {
-                    _Areas = base.CreateObjectSet<Areas>("Areas");
-                }
-                return _Areas;
-            }
-        }
-        private ObjectSet<Areas> _Areas;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Images> Images
         {
             get
@@ -119,18 +102,26 @@ namespace SlutPriser
             }
         }
         private ObjectSet<Properties> _Properties;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SoldProperties> SoldProperties
+        {
+            get
+            {
+                if ((_SoldProperties == null))
+                {
+                    _SoldProperties = base.CreateObjectSet<SoldProperties>("SoldProperties");
+                }
+                return _SoldProperties;
+            }
+        }
+        private ObjectSet<SoldProperties> _SoldProperties;
 
         #endregion
 
         #region AddTo Methods
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Areas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAreas(Areas areas)
-        {
-            base.AddObject("Areas", areas);
-        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the Images EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -147,6 +138,14 @@ namespace SlutPriser
         {
             base.AddObject("Properties", properties);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SoldProperties EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSoldProperties(SoldProperties soldProperties)
+        {
+            base.AddObject("SoldProperties", soldProperties);
+        }
 
         #endregion
 
@@ -155,137 +154,6 @@ namespace SlutPriser
     #endregion
 
     #region Entities
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="SlutPriserModel", Name="Areas")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class Areas : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new Areas object.
-        /// </summary>
-        /// <param name="areaId">Initial value of the AreaId property.</param>
-        public static Areas CreateAreas(global::System.String areaId)
-        {
-            Areas areas = new Areas();
-            areas.AreaId = areaId;
-            return areas;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String AreaId
-        {
-            get
-            {
-                return _AreaId;
-            }
-            set
-            {
-                if (_AreaId != value)
-                {
-                    OnAreaIdChanging(value);
-                    ReportPropertyChanging("AreaId");
-                    _AreaId = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("AreaId");
-                    OnAreaIdChanged();
-                }
-            }
-        }
-        private global::System.String _AreaId;
-        partial void OnAreaIdChanging(global::System.String value);
-        partial void OnAreaIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Area
-        {
-            get
-            {
-                return _Area;
-            }
-            set
-            {
-                OnAreaChanging(value);
-                ReportPropertyChanging("Area");
-                _Area = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Area");
-                OnAreaChanged();
-            }
-        }
-        private global::System.String _Area;
-        partial void OnAreaChanging(global::System.String value);
-        partial void OnAreaChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String City
-        {
-            get
-            {
-                return _City;
-            }
-            set
-            {
-                OnCityChanging(value);
-                ReportPropertyChanging("City");
-                _City = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("City");
-                OnCityChanged();
-            }
-        }
-        private global::System.String _City;
-        partial void OnCityChanging(global::System.String value);
-        partial void OnCityChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SlutPriserModel", "FK_Properties_Areas", "Properties")]
-        public EntityCollection<Properties> Properties
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Properties>("SlutPriserModel.FK_Properties_Areas", "Properties");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Properties>("SlutPriserModel.FK_Properties_Areas", "Properties", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -453,18 +321,18 @@ namespace SlutPriser
         /// </summary>
         /// <param name="key">Initial value of the Key property.</param>
         /// <param name="type">Initial value of the Type property.</param>
-        /// <param name="areaId">Initial value of the AreaId property.</param>
+        /// <param name="area1">Initial value of the Area1 property.</param>
         /// <param name="rooms">Initial value of the Rooms property.</param>
         /// <param name="rent">Initial value of the Rent property.</param>
         /// <param name="listingPrice">Initial value of the ListingPrice property.</param>
         /// <param name="operatingCost">Initial value of the OperatingCost property.</param>
         /// <param name="buildYear">Initial value of the BuildYear property.</param>
-        public static Properties CreateProperties(global::System.String key, global::System.String type, global::System.String areaId, global::System.Int32 rooms, global::System.Int32 rent, global::System.Int32 listingPrice, global::System.Int32 operatingCost, global::System.Int32 buildYear)
+        public static Properties CreateProperties(global::System.String key, global::System.String type, global::System.String area1, global::System.Int32 rooms, global::System.Int32 rent, global::System.Int32 listingPrice, global::System.Int32 operatingCost, global::System.Int32 buildYear)
         {
             Properties properties = new Properties();
             properties.Key = key;
             properties.Type = type;
-            properties.AreaId = areaId;
+            properties.Area1 = area1;
             properties.Rooms = rooms;
             properties.Rent = rent;
             properties.ListingPrice = listingPrice;
@@ -557,24 +425,72 @@ namespace SlutPriser
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String AreaId
+        public global::System.String Area1
         {
             get
             {
-                return _AreaId;
+                return _Area1;
             }
             set
             {
-                OnAreaIdChanging(value);
-                ReportPropertyChanging("AreaId");
-                _AreaId = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("AreaId");
-                OnAreaIdChanged();
+                OnArea1Changing(value);
+                ReportPropertyChanging("Area1");
+                _Area1 = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Area1");
+                OnArea1Changed();
             }
         }
-        private global::System.String _AreaId;
-        partial void OnAreaIdChanging(global::System.String value);
-        partial void OnAreaIdChanged();
+        private global::System.String _Area1;
+        partial void OnArea1Changing(global::System.String value);
+        partial void OnArea1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Area2
+        {
+            get
+            {
+                return _Area2;
+            }
+            set
+            {
+                OnArea2Changing(value);
+                ReportPropertyChanging("Area2");
+                _Area2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Area2");
+                OnArea2Changed();
+            }
+        }
+        private global::System.String _Area2;
+        partial void OnArea2Changing(global::System.String value);
+        partial void OnArea2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String City
+        {
+            get
+            {
+                return _City;
+            }
+            set
+            {
+                OnCityChanging(value);
+                ReportPropertyChanging("City");
+                _City = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("City");
+                OnCityChanged();
+            }
+        }
+        private global::System.String _City;
+        partial void OnCityChanging(global::System.String value);
+        partial void OnCityChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -797,6 +713,30 @@ namespace SlutPriser
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String Broker
+        {
+            get
+            {
+                return _Broker;
+            }
+            set
+            {
+                OnBrokerChanging(value);
+                ReportPropertyChanging("Broker");
+                _Broker = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Broker");
+                OnBrokerChanged();
+            }
+        }
+        private global::System.String _Broker;
+        partial void OnBrokerChanging(global::System.String value);
+        partial void OnBrokerChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String Address
         {
             get
@@ -827,44 +767,6 @@ namespace SlutPriser
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SlutPriserModel", "FK_Properties_Areas", "Areas")]
-        public Areas Areas
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Areas>("SlutPriserModel.FK_Properties_Areas", "Areas").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Areas>("SlutPriserModel.FK_Properties_Areas", "Areas").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Areas> AreasReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Areas>("SlutPriserModel.FK_Properties_Areas", "Areas");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Areas>("SlutPriserModel.FK_Properties_Areas", "Areas", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SlutPriserModel", "FK_Images_Properties", "Images")]
         public EntityCollection<Images> Images
         {
@@ -883,6 +785,417 @@ namespace SlutPriser
 
         #endregion
 
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SlutPriserModel", Name="SoldProperties")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SoldProperties : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SoldProperties object.
+        /// </summary>
+        /// <param name="key">Initial value of the Key property.</param>
+        /// <param name="type">Initial value of the Type property.</param>
+        /// <param name="area">Initial value of the Area property.</param>
+        /// <param name="area1">Initial value of the Area1 property.</param>
+        /// <param name="city">Initial value of the City property.</param>
+        /// <param name="rooms">Initial value of the Rooms property.</param>
+        /// <param name="rent">Initial value of the Rent property.</param>
+        /// <param name="operatingCost">Initial value of the OperatingCost property.</param>
+        /// <param name="buildYear">Initial value of the BuildYear property.</param>
+        /// <param name="finalPrice">Initial value of the FinalPrice property.</param>
+        public static SoldProperties CreateSoldProperties(global::System.String key, global::System.String type, global::System.Double area, global::System.String area1, global::System.String city, global::System.Int32 rooms, global::System.Int32 rent, global::System.Int32 operatingCost, global::System.Int32 buildYear, global::System.Int32 finalPrice)
+        {
+            SoldProperties soldProperties = new SoldProperties();
+            soldProperties.Key = key;
+            soldProperties.Type = type;
+            soldProperties.Area = area;
+            soldProperties.Area1 = area1;
+            soldProperties.City = city;
+            soldProperties.Rooms = rooms;
+            soldProperties.Rent = rent;
+            soldProperties.OperatingCost = operatingCost;
+            soldProperties.BuildYear = buildYear;
+            soldProperties.FinalPrice = finalPrice;
+            return soldProperties;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Key
+        {
+            get
+            {
+                return _Key;
+            }
+            set
+            {
+                if (_Key != value)
+                {
+                    OnKeyChanging(value);
+                    ReportPropertyChanging("Key");
+                    _Key = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("Key");
+                    OnKeyChanged();
+                }
+            }
+        }
+        private global::System.String _Key;
+        partial void OnKeyChanging(global::System.String value);
+        partial void OnKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
+            }
+        }
+        private global::System.String _Type;
+        partial void OnTypeChanging(global::System.String value);
+        partial void OnTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Area
+        {
+            get
+            {
+                return _Area;
+            }
+            set
+            {
+                OnAreaChanging(value);
+                ReportPropertyChanging("Area");
+                _Area = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Area");
+                OnAreaChanged();
+            }
+        }
+        private global::System.Double _Area;
+        partial void OnAreaChanging(global::System.Double value);
+        partial void OnAreaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Area1
+        {
+            get
+            {
+                return _Area1;
+            }
+            set
+            {
+                OnArea1Changing(value);
+                ReportPropertyChanging("Area1");
+                _Area1 = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Area1");
+                OnArea1Changed();
+            }
+        }
+        private global::System.String _Area1;
+        partial void OnArea1Changing(global::System.String value);
+        partial void OnArea1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Area2
+        {
+            get
+            {
+                return _Area2;
+            }
+            set
+            {
+                OnArea2Changing(value);
+                ReportPropertyChanging("Area2");
+                _Area2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Area2");
+                OnArea2Changed();
+            }
+        }
+        private global::System.String _Area2;
+        partial void OnArea2Changing(global::System.String value);
+        partial void OnArea2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String City
+        {
+            get
+            {
+                return _City;
+            }
+            set
+            {
+                OnCityChanging(value);
+                ReportPropertyChanging("City");
+                _City = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("City");
+                OnCityChanged();
+            }
+        }
+        private global::System.String _City;
+        partial void OnCityChanging(global::System.String value);
+        partial void OnCityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Rooms
+        {
+            get
+            {
+                return _Rooms;
+            }
+            set
+            {
+                OnRoomsChanging(value);
+                ReportPropertyChanging("Rooms");
+                _Rooms = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rooms");
+                OnRoomsChanged();
+            }
+        }
+        private global::System.Int32 _Rooms;
+        partial void OnRoomsChanging(global::System.Int32 value);
+        partial void OnRoomsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Rent
+        {
+            get
+            {
+                return _Rent;
+            }
+            set
+            {
+                OnRentChanging(value);
+                ReportPropertyChanging("Rent");
+                _Rent = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rent");
+                OnRentChanged();
+            }
+        }
+        private global::System.Int32 _Rent;
+        partial void OnRentChanging(global::System.Int32 value);
+        partial void OnRentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 OperatingCost
+        {
+            get
+            {
+                return _OperatingCost;
+            }
+            set
+            {
+                OnOperatingCostChanging(value);
+                ReportPropertyChanging("OperatingCost");
+                _OperatingCost = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OperatingCost");
+                OnOperatingCostChanged();
+            }
+        }
+        private global::System.Int32 _OperatingCost;
+        partial void OnOperatingCostChanging(global::System.Int32 value);
+        partial void OnOperatingCostChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 BuildYear
+        {
+            get
+            {
+                return _BuildYear;
+            }
+            set
+            {
+                OnBuildYearChanging(value);
+                ReportPropertyChanging("BuildYear");
+                _BuildYear = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BuildYear");
+                OnBuildYearChanged();
+            }
+        }
+        private global::System.Int32 _BuildYear;
+        partial void OnBuildYearChanging(global::System.Int32 value);
+        partial void OnBuildYearChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 FinalPrice
+        {
+            get
+            {
+                return _FinalPrice;
+            }
+            set
+            {
+                OnFinalPriceChanging(value);
+                ReportPropertyChanging("FinalPrice");
+                _FinalPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FinalPrice");
+                OnFinalPriceChanged();
+            }
+        }
+        private global::System.Int32 _FinalPrice;
+        partial void OnFinalPriceChanging(global::System.Int32 value);
+        partial void OnFinalPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> SellingDate
+        {
+            get
+            {
+                return _SellingDate;
+            }
+            set
+            {
+                OnSellingDateChanging(value);
+                ReportPropertyChanging("SellingDate");
+                _SellingDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SellingDate");
+                OnSellingDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _SellingDate;
+        partial void OnSellingDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnSellingDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ListingPricePerArea
+        {
+            get
+            {
+                return _ListingPricePerArea;
+            }
+            set
+            {
+                OnListingPricePerAreaChanging(value);
+                ReportPropertyChanging("ListingPricePerArea");
+                _ListingPricePerArea = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ListingPricePerArea");
+                OnListingPricePerAreaChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ListingPricePerArea;
+        partial void OnListingPricePerAreaChanging(Nullable<global::System.Int32> value);
+        partial void OnListingPricePerAreaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Broker
+        {
+            get
+            {
+                return _Broker;
+            }
+            set
+            {
+                OnBrokerChanging(value);
+                ReportPropertyChanging("Broker");
+                _Broker = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Broker");
+                OnBrokerChanged();
+            }
+        }
+        private global::System.String _Broker;
+        partial void OnBrokerChanging(global::System.String value);
+        partial void OnBrokerChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Address
+        {
+            get
+            {
+                return _Address;
+            }
+            set
+            {
+                OnAddressChanging(value);
+                ReportPropertyChanging("Address");
+                _Address = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Address");
+                OnAddressChanged();
+            }
+        }
+        private global::System.String _Address;
+        partial void OnAddressChanging(global::System.String value);
+        partial void OnAddressChanged();
+
+        #endregion
+
+    
     }
 
     #endregion

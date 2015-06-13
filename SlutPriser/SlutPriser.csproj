@@ -100,6 +100,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FinalPriceImporter.cs" />
+    <Compile Include="Helpers\PropertyHelper.cs" />
     <Compile Include="IBrokerInterface.cs" />
     <Compile Include="LandgrenBroker.cs" />
     <Compile Include="LandgrenXml.cs" />
@@ -108,6 +110,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Property.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
