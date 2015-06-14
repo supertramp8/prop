@@ -54,6 +54,8 @@ namespace SlutPriser
 
         static void Main()
         {
+            FinalPriceImporter.Run();
+            return;
             string domString;
 
             //Get List Items
