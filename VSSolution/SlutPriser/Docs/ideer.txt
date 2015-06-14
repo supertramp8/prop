@@ -1,0 +1,7 @@
+Mäklarstatistik
+	- Vilka mäklare presterar bäst?
+	- Vilka mäklare säljer snabbast?
+
+Statistik allmänt
+	- Vad är det för standardavvikelse på priset för likvärdiga lägenheter?
+	- Volalitet

@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SlutPriserModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SlutPriserModelStoreContainer">
+          <EntitySet Name="Images" EntityType="SlutPriserModel.Store.Images" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Properties" EntityType="SlutPriserModel.Store.Properties" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SoldProperties" EntityType="SlutPriserModel.Store.SoldProperties" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Images_Properties" Association="SlutPriserModel.Store.FK_Images_Properties">
+            <End Role="Properties" EntitySet="Properties" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Property" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Properties">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Area" Type="float" />
+          <Property Name="Area1" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Area2" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="Rooms" Type="int" Nullable="false" />
+          <Property Name="Rent" Type="int" Nullable="false" />
+          <Property Name="ListingPrice" Type="int" Nullable="false" />
+          <Property Name="OperatingCost" Type="int" Nullable="false" />
+          <Property Name="BuildYear" Type="int" Nullable="false" />
+          <Property Name="FinalPrice" Type="int" />
+          <Property Name="ListingDate" Type="date" />
+          <Property Name="SellingDate" Type="date" />
+          <Property Name="ListingPricePerArea" Type="int" />
+          <Property Name="Broker" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SoldProperties">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Area" Type="float" Nullable="false" />
+          <Property Name="Area1" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Area2" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Rooms" Type="int" Nullable="false" />
+          <Property Name="Rent" Type="int" Nullable="false" />
+          <Property Name="OperatingCost" Type="int" Nullable="false" />
+          <Property Name="BuildYear" Type="int" Nullable="false" />
+          <Property Name="FinalPrice" Type="int" Nullable="false" />
+          <Property Name="SellingDate" Type="date" />
+          <Property Name="ListingPricePerArea" Type="int" />
+          <Property Name="Broker" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Images_Properties">
+          <End Role="Properties" Type="SlutPriserModel.Store.Properties" Multiplicity="1" />
+          <End Role="Images" Type="SlutPriserModel.Store.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Properties">
+              <PropertyRef Name="Key" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="Property" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SlutPriserModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SlutPriserEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Images" EntityType="SlutPriserModel.Images" />
+          <EntitySet Name="Properties" EntityType="SlutPriserModel.Properties" />
+          <EntitySet Name="SoldProperties" EntityType="SlutPriserModel.SoldProperties" />
+          <AssociationSet Name="FK_Images_Properties" Association="SlutPriserModel.FK_Images_Properties">
+            <End Role="Properties" EntitySet="Properties" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Property" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Properties" Relationship="SlutPriserModel.FK_Images_Properties" FromRole="Images" ToRole="Properties" />
+        </EntityType>
+        <EntityType Name="Properties">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Area" Type="Double" />
+          <Property Name="Area1" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Area2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Rooms" Type="Int32" Nullable="false" />
+          <Property Name="Rent" Type="Int32" Nullable="false" />
+          <Property Name="ListingPrice" Type="Int32" Nullable="false" />
+          <Property Name="OperatingCost" Type="Int32" Nullable="false" />
+          <Property Name="BuildYear" Type="Int32" Nullable="false" />
+          <Property Name="FinalPrice" Type="Int32" />
+          <Property Name="ListingDate" Type="DateTime" />
+          <Property Name="SellingDate" Type="DateTime" />
+          <Property Name="ListingPricePerArea" Type="Int32" />
+          <Property Name="Broker" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Images" Relationship="SlutPriserModel.FK_Images_Properties" FromRole="Properties" ToRole="Images" />
+        </EntityType>
+        <EntityType Name="SoldProperties">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Area" Type="Double" Nullable="false" />
+          <Property Name="Area1" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Area2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Rooms" Type="Int32" Nullable="false" />
+          <Property Name="Rent" Type="Int32" Nullable="false" />
+          <Property Name="OperatingCost" Type="Int32" Nullable="false" />
+          <Property Name="BuildYear" Type="Int32" Nullable="false" />
+          <Property Name="FinalPrice" Type="Int32" Nullable="false" />
+          <Property Name="SellingDate" Type="DateTime" />
+          <Property Name="ListingPricePerArea" Type="Int32" />
+          <Property Name="Broker" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Images_Properties">
+          <End Role="Properties" Type="SlutPriserModel.Properties" Multiplicity="1" />
+          <End Role="Images" Type="SlutPriserModel.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Properties">
+              <PropertyRef Name="Key" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="Property" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SlutPriserModelStoreContainer" CdmEntityContainer="SlutPriserEntities">
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="SlutPriserModel.Images">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="Property" ColumnName="Property" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="SlutPriserModel.Properties">
+              <MappingFragment StoreEntitySet="Properties">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Area1" ColumnName="Area1" />
+                <ScalarProperty Name="Area2" ColumnName="Area2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Rooms" ColumnName="Rooms" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="ListingPrice" ColumnName="ListingPrice" />
+                <ScalarProperty Name="OperatingCost" ColumnName="OperatingCost" />
+                <ScalarProperty Name="BuildYear" ColumnName="BuildYear" />
+                <ScalarProperty Name="FinalPrice" ColumnName="FinalPrice" />
+                <ScalarProperty Name="ListingDate" ColumnName="ListingDate" />
+                <ScalarProperty Name="SellingDate" ColumnName="SellingDate" />
+                <ScalarProperty Name="ListingPricePerArea" ColumnName="ListingPricePerArea" />
+                <ScalarProperty Name="Broker" ColumnName="Broker" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SoldProperties">
+            <EntityTypeMapping TypeName="SlutPriserModel.SoldProperties">
+              <MappingFragment StoreEntitySet="SoldProperties">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Area1" ColumnName="Area1" />
+                <ScalarProperty Name="Area2" ColumnName="Area2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Rooms" ColumnName="Rooms" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="OperatingCost" ColumnName="OperatingCost" />
+                <ScalarProperty Name="BuildYear" ColumnName="BuildYear" />
+                <ScalarProperty Name="FinalPrice" ColumnName="FinalPrice" />
+                <ScalarProperty Name="SellingDate" ColumnName="SellingDate" />
+                <ScalarProperty Name="ListingPricePerArea" ColumnName="ListingPricePerArea" />
+                <ScalarProperty Name="Broker" ColumnName="Broker" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1" ZoomLevel="91">
+        <EntityTypeShape EntityType="SlutPriserModel.Images" Width="1.5" PointX="3" PointY="2.375" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SlutPriserModel.Properties" Width="1.5" PointX="0.75" PointY="1" Height="4.480205078125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SlutPriserModel.SoldProperties" Width="1.5" PointX="5.75" PointY="0.75" Height="3.9033007812499996" IsExpanded="true" />
+        <AssociationConnector Association="SlutPriserModel.FK_Images_Properties" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.2689925130208337" />
+          <ConnectorPoint PointX="3" PointY="3.2689925130208337" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
