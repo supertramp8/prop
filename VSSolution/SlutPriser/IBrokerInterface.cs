@@ -6,6 +6,7 @@ using CsQuery;
 using System.Net;
 using System.IO;
 using System.Data.Objects.DataClasses;
+using System.Diagnostics;
 
 namespace SlutPriser
 {
@@ -45,33 +46,41 @@ namespace SlutPriser
             return imageLinks.Select(x => GetImageLinkForBroker(x, MoreImagesLink)).ToList();
         }
 
-        public virtual EntityCollection<Images> DownloadImages(string address)
+        public virtual EntityCollection<Images> DownloadImages(string address, string hash)
         {
-            var imageLinks = GetImageLinks();
-
-            string localFilename = @"c:\temp\" + BrokerName + "\\" + address + "\\";
-            int i = 1;
-
-            var images = new EntityCollection<Images>();
-            string subPath = Guid.NewGuid().ToString() + "\\" ;
-            bool exists = System.IO.Directory.Exists(localFilename + subPath);
-
-            if (!exists)
-                System.IO.Directory.CreateDirectory(localFilename + subPath);
-            foreach (var imageLink in imageLinks)
+            try
             {
-                using (WebClient requestPic = new WebClient())
-                {
-                    var location = localFilename + subPath + i++ + ".jpg";
-                    requestPic.DownloadFile(imageLink, location);
-                    images.Add(new Images()
-                    {
-                        Location = location,
-                    });
-                };
-            }
+                var imageLinks = GetImageLinks();
 
-            return images;
+                string localFilename = @"c:\temp\" + BrokerName + "\\" + address + "\\";
+                int i = 1;
+
+                var images = new EntityCollection<Images>();
+                string subPath = hash + "\\";
+                bool exists = System.IO.Directory.Exists(localFilename + subPath);
+
+                if (!exists)
+                    System.IO.Directory.CreateDirectory(localFilename + subPath);
+                foreach (var imageLink in imageLinks)
+                {
+                    using (WebClient requestPic = new WebClient())
+                    {
+                        var location = localFilename + subPath + i++ + ".jpg";
+                        requestPic.DownloadFile(imageLink, location);
+                        images.Add(new Images()
+                        {
+                            Location = location,
+                        });
+                    };
+                }
+
+                return images;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Unable to download image: " + address);
+                return new EntityCollection<Images>();
+            }
         }
 
         private string GetImageLinkForBroker(IDomObject dom, string brokerUrl)
@@ -90,6 +99,10 @@ namespace SlutPriser
             else if (brokerUrl.Contains("bulowlind"))
             {
                 selector = "data-src";
+            }
+            else if (brokerUrl.Contains("erasweden"))
+            {
+                selector = "data-mobile";
             }
 
 

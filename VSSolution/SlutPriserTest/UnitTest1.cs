@@ -13,13 +13,20 @@ namespace SlutPriserTest
         [TestMethod]
         public void TestMethod1()
         {
-            //string imagesLink = "http://www.peterlandgren.se/objekt/bilder.html?470509";
-            string imagesLink = "http://www.mohv.se/till-salu/bostad.aspx?gid=OBJ12441_1375093482&ViewAllImages=1";
+           // //string imagesLink = "http://www.peterlandgren.se/objekt/bilder.html?470509";
+           // string imagesLink = "http://www.mohv.se/till-salu/bostad.aspx?gid=OBJ12441_1375093482&ViewAllImages=1";
         
-            //var broker = new LandgrenBroker(imagesLink, "PeterLandgren");
-            var broker = new Broker(imagesLink,".ObjectView img.ObjectImg", "MOHV");
+           // //var broker = new LandgrenBroker(imagesLink, "PeterLandgren");
+           // var broker = new Broker(imagesLink,".ObjectView img.ObjectImg", "MOHV");
 
-           var images = broker.DownloadImages("adress");
+           //var images = broker.DownloadImages("adress");
+        }
+
+        [TestMethod]
+        public void TestGetCityForProperty()
+        {
+            var city = FinalPriceImporter.GetCityForProperty("http://www.hemnet.se/salda/bostadsratt-3rum-ribersborg-skvadronsgatan-10-300600");
+            StringAssert.Equals(city, "Malmö");
         }
     }
 }

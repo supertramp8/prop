@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Security.Cryptography;
+using SlutPriser.Helpers;
 
 namespace SlutPriser.Models
 {
@@ -9,6 +11,8 @@ namespace SlutPriser.Models
     {
         public string Type { get; set; }
         public double Area { get; set; }
+        public double BiArea { get; set; }
+        public double PlotArea { get; set; }
         public string Area1 { get; set; }
         public string Area2 { get; set; }
         public string City { get; set; }
@@ -22,10 +26,15 @@ namespace SlutPriser.Models
         public int BuildYear { get; set; }
         public string Address { get; set; }
         public string Broker { get; set; }
+        public string Url { get; set; }
 
-        public string GetHashCode()
+
+
+        public string GetPropertyKey()
         {
-            return this.Address.GetHashCode() + this.Rooms.GetHashCode() + this.Rent.GetHashCode() + this.Area.GetHashCode() + this.BuildYear.GetHashCode() + +this.ListingPrice.GetHashCode() + "";
+            //return this.Address.GetHashCode() + this.Rooms.GetHashCode() + this.Rent.GetHashCode() + this.Area.GetHashCode() + this.BuildYear.GetHashCode() + +this.ListingPrice.GetHashCode() + "";
+            string hashString =  this.Address.GetHashCode() + this.Rooms.GetHashCode() + this.Rent.GetHashCode() + this.Area.GetHashCode() + +this.ListingPrice.GetHashCode() + "";
+            return PropertyHelper.Sha256(hashString);
         }
 
         public SoldProperties ToSoldProperties() {
@@ -39,7 +48,7 @@ namespace SlutPriser.Models
                         BuildYear = this.BuildYear,
                         City = this.City,
                         FinalPrice = this.FinalPrice,
-                        Key = this.GetHashCode(),
+                        Key = this.GetPropertyKey(),
                         ListingPricePerArea = this.ListingPricePerArea,
                         OperatingCost = this.OperatingCost,
                         Rent = this.Rent,

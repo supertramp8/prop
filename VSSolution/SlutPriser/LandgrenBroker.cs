@@ -25,20 +25,28 @@ namespace SlutPriser
 
         public override List<string> GetImageLinks()
         {
-            WebRequest moreImagesRequest = WebRequest.Create(imagesUrl+objectId);
-            ((HttpWebRequest)moreImagesRequest).UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)";
-            var moreImagesResponse = moreImagesRequest.GetResponse();
-            using (var stream3 = moreImagesResponse.GetResponseStream())
-            using (var reader3 = new StreamReader(stream3))
+            try
             {
-                _xml = reader3.ReadToEnd();
-            }
-            XmlSerializer serializer = new XmlSerializer(typeof(Item));
-            XmlTextReader reader = new XmlTextReader(new StringReader(_xml));
-            
-            Item h = (Item)serializer.Deserialize(reader);
+                WebRequest moreImagesRequest = WebRequest.Create(imagesUrl + objectId);
+                ((HttpWebRequest)moreImagesRequest).UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)";
+                var moreImagesResponse = moreImagesRequest.GetResponse();
+                using (var stream3 = moreImagesResponse.GetResponseStream())
+                using (var reader3 = new StreamReader(stream3))
+                {
+                    _xml = reader3.ReadToEnd();
+                }
+                XmlSerializer serializer = new XmlSerializer(typeof(Item));
+                XmlTextReader reader = new XmlTextReader(new StringReader(_xml));
 
-            return h.Images.Select(x => x.Medium.First().path).ToList();
+                Item h = (Item)serializer.Deserialize(reader);
+
+                return h.Images.Select(x => x.Medium.First().path).ToList();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Unable to retrieve images at: " + imagesUrl + objectId);
+                return new List<string>();
+            }
         }
     }
 }

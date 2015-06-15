@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SlutPriserModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="SlutPriserModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SlutPriserModelStoreContainer">
           <EntitySet Name="Images" EntityType="SlutPriserModel.Store.Images" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Properties" EntityType="SlutPriserModel.Store.Properties" store:Type="Tables" Schema="dbo" />
@@ -18,7 +18,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Property" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Property" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Location" Type="nvarchar" Nullable="false" MaxLength="200" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
@@ -26,7 +26,7 @@
           <Key>
             <PropertyRef Name="Key" />
           </Key>
-          <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Area" Type="float" />
           <Property Name="Area1" Type="nvarchar" Nullable="false" MaxLength="100" />
@@ -43,13 +43,15 @@
           <Property Name="ListingPricePerArea" Type="int" />
           <Property Name="Broker" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="BiArea" Type="float" />
+          <Property Name="PlotArea" Type="float" />
         </EntityType>
         <EntityType Name="SoldProperties">
           <Key>
             <PropertyRef Name="Key" />
           </Key>
-          <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="Area" Type="float" Nullable="false" />
           <Property Name="Area1" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Area2" Type="nvarchar" MaxLength="100" />
@@ -57,12 +59,14 @@
           <Property Name="Rooms" Type="int" Nullable="false" />
           <Property Name="Rent" Type="int" Nullable="false" />
           <Property Name="OperatingCost" Type="int" Nullable="false" />
-          <Property Name="BuildYear" Type="int" Nullable="false" />
+          <Property Name="BuildYear" Type="int" />
           <Property Name="FinalPrice" Type="int" Nullable="false" />
           <Property Name="SellingDate" Type="date" />
           <Property Name="ListingPricePerArea" Type="int" />
           <Property Name="Broker" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="BiArea" Type="float" />
+          <Property Name="PlotArea" Type="float" />
         </EntityType>
         <Association Name="FK_Images_Properties">
           <End Role="Properties" Type="SlutPriserModel.Store.Properties" Multiplicity="1" />
@@ -76,8 +80,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SlutPriserModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -94,7 +97,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Property" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Property" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Location" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Properties" Relationship="SlutPriserModel.FK_Images_Properties" FromRole="Images" ToRole="Properties" />
@@ -121,13 +124,15 @@
           <Property Name="Broker" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Images" Relationship="SlutPriserModel.FK_Images_Properties" FromRole="Properties" ToRole="Images" />
+          <Property Type="Double" Name="BiArea" />
+          <Property Type="Double" Name="PlotArea" />
         </EntityType>
         <EntityType Name="SoldProperties">
           <Key>
             <PropertyRef Name="Key" />
           </Key>
-          <Property Name="Key" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Area" Type="Double" Nullable="false" />
           <Property Name="Area1" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Area2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
@@ -135,12 +140,14 @@
           <Property Name="Rooms" Type="Int32" Nullable="false" />
           <Property Name="Rent" Type="Int32" Nullable="false" />
           <Property Name="OperatingCost" Type="Int32" Nullable="false" />
-          <Property Name="BuildYear" Type="Int32" Nullable="false" />
+          <Property Name="BuildYear" Type="Int32" />
           <Property Name="FinalPrice" Type="Int32" Nullable="false" />
           <Property Name="SellingDate" Type="DateTime" />
           <Property Name="ListingPricePerArea" Type="Int32" />
           <Property Name="Broker" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Double" Name="BiArea" />
+          <Property Type="Double" Name="PlotArea" />
         </EntityType>
         <Association Name="FK_Images_Properties">
           <End Role="Properties" Type="SlutPriserModel.Properties" Multiplicity="1" />
@@ -172,6 +179,8 @@
           <EntitySetMapping Name="Properties">
             <EntityTypeMapping TypeName="SlutPriserModel.Properties">
               <MappingFragment StoreEntitySet="Properties">
+                <ScalarProperty Name="PlotArea" ColumnName="PlotArea" />
+                <ScalarProperty Name="BiArea" ColumnName="BiArea" />
                 <ScalarProperty Name="Key" ColumnName="Key" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Area" ColumnName="Area" />
@@ -195,6 +204,8 @@
           <EntitySetMapping Name="SoldProperties">
             <EntityTypeMapping TypeName="SlutPriserModel.SoldProperties">
               <MappingFragment StoreEntitySet="SoldProperties">
+                <ScalarProperty Name="PlotArea" ColumnName="PlotArea" />
+                <ScalarProperty Name="BiArea" ColumnName="BiArea" />
                 <ScalarProperty Name="Key" ColumnName="Key" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Area" ColumnName="Area" />
@@ -233,7 +244,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model1" ZoomLevel="91">
+      <Diagram Name="Model1">
         <EntityTypeShape EntityType="SlutPriserModel.Images" Width="1.5" PointX="3" PointY="2.375" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="SlutPriserModel.Properties" Width="1.5" PointX="0.75" PointY="1" Height="4.480205078125" IsExpanded="true" />
         <EntityTypeShape EntityType="SlutPriserModel.SoldProperties" Width="1.5" PointX="5.75" PointY="0.75" Height="3.9033007812499996" IsExpanded="true" />
